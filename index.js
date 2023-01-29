@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const { existsSync, mkdirSync } = require("fs");
-
+const path = require("path");
 if (!existsSync("./images/")) mkdirSync("./images/");
 
 app.use(bodyParser.json());

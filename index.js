@@ -23,6 +23,16 @@ function randomName() {
     return newText;
 }
 
+// ----------
+// MY WEBPAGE
+app.use("/static", express.static(path.join(__dirname, "static")));
+
+app.get("/", (req, res) => {
+    res.sendFile(process.cwd() + "/index.html");
+});
+// ----------
+
+// API
 app.post("/upload", (req, res) => {
     res.setHeader("Content-Type", "application/json");
 
@@ -59,7 +69,7 @@ app.post("/upload", (req, res) => {
     let data = JSON.parse(jsonString);
     data.push(properties);
     fs.writeFileSync("./data.json", JSON.stringify(data));
-    
+
     file.mv(newPath, (err) => {
         if (err) {
             console.log(`[ERROR] Failed to upload file: ${imageName}${ext}\n${err}`);

@@ -49,12 +49,17 @@ app.post("/upload", (req, res) => {
     const ext = require("path").extname(file.name);
     const newPath = `${__dirname}/images/${imageName}${ext}`;
 
-    const data = {
-        name: req.query.name,
+    const properties = {
+        name: req.query.name || fs.readdirSync("./images") + ".png",
         tags: req.query.tags.split(","), // need some ideas
-        uploaded: Date.now()
+        uploaded: Date.now(),
     }
-    const jsonString = fs.readFileSync("./")
+
+    const jsonString = fs.readFileSync("./data.json");
+    let data = JSON.parse(jsonString);
+    data.push(properties);
+    fs.writeFileSync("./data.json", JSON.stringify(data));
+    
     file.mv(newPath, (err) => {
         if (err) {
             console.log(`[ERROR] Failed to upload file: ${imageName}${ext}\n${err}`);

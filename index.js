@@ -41,7 +41,7 @@ app.post("/upload", (req, res) => {
         file: null,
         message: "You are not allowed to perform this action."
     });
-    
+
     if (!req.files) return res.status(400).json({
         success: false,
         file: null,
@@ -55,8 +55,7 @@ app.post("/upload", (req, res) => {
     });
 
     
-
-    const file = req.files.uploaded;
+    const file = req.body.files.uploaded;
     const imageName = randomName();
     const ext = require("path").extname(file.name);
     const newPath = `${__dirname}/images/${imageName}${ext}`;

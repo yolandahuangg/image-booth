@@ -36,6 +36,12 @@ app.get("/", (req, res) => {
 app.post("/upload", (req, res) => {
     res.setHeader("Content-Type", "application/json");
 
+    if (req.headers["authorization"] !== key) return res.status(403).json({
+        success: false,
+        file: null,
+        message: "You are not allowed to perform this action."
+    });
+    
     if (!req.files) return res.status(400).json({
         success: false,
         file: null,
@@ -48,11 +54,7 @@ app.post("/upload", (req, res) => {
         message: "Missing authorization header."
     });
 
-    if (req.headers["authorization"] !== key) return res.status(403).json({
-        success: false,
-        file: null,
-        message: "You are not allowed to perform this action."
-    });
+    
 
     const file = req.files.uploaded;
     const imageName = randomName();

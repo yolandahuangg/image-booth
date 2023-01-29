@@ -1,3 +1,7 @@
+# Image Paths (since local testing takes place)
+data.json
+images
+
 # Logs
 logs
 *.log

@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "name": "test1",
+    "tags": [
+      "test",
+      "dev",
+      "genshin"
+    ],
+    "uploaded": 1675035070327
+  },
+  {
+    "name": "test2",
+    "tags": [
+      "test",
+      "genshin"
+    ],
+    "uploaded": 1675035092491
+  }
+]

@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const { existsSync, mkdirSync } = require("fs");
 const path = require("path");
+const fs = require("fs");
 if (!existsSync("./images/")) mkdirSync("./images/");
 
 app.use(bodyParser.json());
@@ -54,8 +55,8 @@ app.post("/upload", (req, res) => {
         message: "Missing authorization header."
     });
 
-    
-    const file = req.body.files.uploaded;
+    console.log(req.files)
+    const file = req.files.image;
     const imageName = randomName();
     const ext = require("path").extname(file.name);
     const newPath = `${__dirname}/images/${imageName}${ext}`;
@@ -69,7 +70,7 @@ app.post("/upload", (req, res) => {
     const jsonString = fs.readFileSync("./data.json");
     let data = JSON.parse(jsonString);
     data.push(properties);
-    fs.writeFileSync("./data.json", JSON.stringify(data));
+    fs.writeFileSync("./data.json", JSON.stringify(data, null, 2));
 
     file.mv(newPath, (err) => {
         if (err) {

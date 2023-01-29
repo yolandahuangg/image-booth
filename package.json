@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/yolandahuangg/image-booth/issues"
   },
-  "homepage": "https://github.com/yolandahuangg/image-booth#readme"
+  "homepage": "https://github.com/yolandahuangg/image-booth#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0"
+  }
 }

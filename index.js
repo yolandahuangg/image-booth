@@ -10,7 +10,7 @@ const fs = require("fs");
 
 // DB
 const dbConnect = require("./src/db");
-const appUser = require("./src/userModel");
+const User = require("./src/userModel");
 const bcrypt = require("bcrypt");
 
 if (!existsSync("./images/")) mkdirSync("./images/");
@@ -112,20 +112,20 @@ app.post("/register", (req, res) => {
           .then((result) => {
             res.status(201).send({
               message: "User created successfully.",
-              result
+              result: result
             })
           })
           .catch((error) => {
             res.status(500).send({
               message: "Error creating user.",
-              error
+              error: error
             })
           })
       })
     .catch((error) => {
       res.status(500).send({
         message: "Password was not hashed successfully.",
-        error
+        error: error
       })
     })
 })

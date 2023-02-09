@@ -121,8 +121,13 @@ app.post("/register", (req, res) => {
               error
             })
           })
-      }
-  );
+      })
+    .catch((error) => {
+      res.status(500).send({
+        message: "Password was not hashed successfully.",
+        error
+      })
+    })
 })
 
 app.listen(3333, (err) => {

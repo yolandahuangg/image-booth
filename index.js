@@ -12,6 +12,7 @@ const fs = require("fs");
 const dbConnect = require("./src/db");
 const User = require("./src/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 if (!existsSync("./images/")) mkdirSync("./images/");
 

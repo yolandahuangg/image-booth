@@ -135,7 +135,7 @@ app.post("/login", (req, res) => {
   .then((user) => {
     bcrypt
       .compare(req.body.password, user.password)
-        .then((passwordCheck) => {s
+        .then((passwordCheck) => {
           if(!passwordCheck) {
             return response.status(400).send({
               message: "Passwords does not match",

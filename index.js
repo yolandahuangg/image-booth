@@ -13,6 +13,7 @@ const dbConnect = require("./src/db");
 const User = require("./src/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const auth = require("./auth");
 
 if (!existsSync("./images/")) mkdirSync("./images/");
 
@@ -33,6 +34,20 @@ function randomName() {
 }
 
 dbConnect();
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+  );
+  next();
+});
+
 // ----------
 // MY WEBPAGE
 app.use("/static", express.static(path.join(__dirname, "static")));

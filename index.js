@@ -130,6 +130,51 @@ app.post("/register", (req, res) => {
     })
 })
 
+app.post("/login", (req, res) => {
+  User.findOne({ email: req.body.email })
+  .then((user) => {
+    bcrypt
+      .compare(req.body.password, user.password)
+        .then((passwordCheck) => {s
+          if(!passwordCheck) {
+            return response.status(400).send({
+              message: "Passwords does not match",
+              error,
+            });
+          }
+
+          const token = jwt.sign(
+            {
+              userId: user._id,
+              userEmail: user.email,
+            },
+            "RANDOM-TOKEN",
+            { expiresIn: "24h" }
+          );
+
+          res.status(200).send({
+            message: "Login successful.",
+            email: user.email,
+            token: token,
+          });
+        })
+
+        .catch((error) => {
+          res.status(400).send({
+            message: "Incorrect password.",
+            error: error,
+          });
+        });
+    })
+
+    .catch((e) => {
+      res.status(404).send({
+        message: "Email not found.",
+        error: e,
+      });
+    });
+})
+
 app.listen(3333, (err) => {
   if (err) throw err;
   console.log("[INFO] Server started on port 3333!");

@@ -105,7 +105,7 @@ app.post("/register", (req, res) => {
   bcrypt.hash(req.body.password, 10)
     .then((hashedPassword) => {
         const user = new User({
-          email: request.body.email,
+          email: req.body.email,
           password: hashedPassword,
         })
         user.save()

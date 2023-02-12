@@ -1,6 +1,6 @@
 // external imports
 const mongoose = require("mongoose");
-const { mongodb } = require("../config.json");
+const { mongodb } = require("../../config.json");
 
 async function dbConnect() {
   // use mongoose to connect this app to our database on mongoDB using the DB_URL (connection string)

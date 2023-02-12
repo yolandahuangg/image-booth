@@ -9,11 +9,11 @@ const path = require("path");
 const fs = require("fs");
 
 // DB
-const dbConnect = require("./src/db");
-const User = require("./src/userModel");
+const dbConnect = require("./src/db/db");
+const User = require("./src/db/models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const auth = require("./auth");
+const auth = require("./src/db/auth");
 
 if (!existsSync("./images/")) mkdirSync("./images/");
 

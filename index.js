@@ -153,7 +153,7 @@ app.post("/login", (req, res) => {
       .compare(req.body.password, user.password)
         .then((passwordCheck) => {
           if(!passwordCheck) {
-            return response.status(400).send({
+            return res.status(400).send({
               message: "Passwords does not match",
               error,
             });
